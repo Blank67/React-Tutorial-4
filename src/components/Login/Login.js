@@ -4,6 +4,7 @@ import Card from '../UI/Card/Card';
 import css from './Login.module.css';
 import Button from '../UI/Button/Button';
 import AuthContext from '../../context/auth-context';
+import Input from '../UI/Input/Input';
 
 const emailReducer = (state, action) => {
   if(action.type === 'EMAIL_INPUT'){
@@ -86,48 +87,9 @@ const Login = (props) => {
   return (
     <Card className={css.login}>
       <form onSubmit={submitHandler}>
-        <div
-          className={`${css.control} ${
-            emailState.isValid === false ? css.invalid : ''
-          }`}
-        >
-          <label htmlFor="email">E-Mail</label>
-          <input
-            type="email"
-            id="email"
-            value={emailState.value}
-            onChange={emailChangeHandler}
-            onBlur={validateEmailHandler}
-          />
-        </div>
-        <div
-          className={`${css.control} ${
-            passwordState.isValid === false ? css.invalid : ''
-          }`}
-        >
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            value={passwordState.value}
-            onChange={passwordChangeHandler}
-            onBlur={validatePasswordHandler}
-          />
-        </div>
-        <div
-          className={`${css.control} ${
-            collegeState.isValid === false ? css.invalid : ''
-          }`}
-        >
-          <label htmlFor="college">College</label>
-          <input
-            type="text"
-            id="text"
-            value={collegeState.value}
-            onChange={collegeChangeHandler}
-            onBlur={validateCollegeHandler}
-          />
-        </div>
+        <Input id='email' label='E-Mail' type='email' value={emailState.value} isValid={emailIsValid} onChange={emailChangeHandler} onBlur={validateEmailHandler} />
+        <Input id='password' label='Password' type='password' value={passwordState.value} isValid={passwordIsValid} onChange={passwordChangeHandler} onBlur={validatePasswordHandler} />
+        <Input id='college' label='College' type='text' value={collegeState.value} isValid={collegeIsValid} onChange={collegeChangeHandler} onBlur={validateCollegeHandler} />
         <div className={css.actions}>
           <Button type="submit" className={css.btn} disabled={!formIsValid}>
             Login
